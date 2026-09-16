@@ -1,0 +1,99 @@
+services:
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redis_data:/data
+    networks:
+      - backend
+    ports:
+      - "6379:6379"
+
+  libretto-server:
+    build:
+      context: .
+      dockerfile: ./server/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./databases:/app/databases
+    env_file:
+      - .env
+    environment:
+      - INTERACTION_DB_CONNECTION=${INTERACTION_DB_CONNECTION:-sqlite:////app/databases/example_interactions.db}
+      - SOURCE_DB_CONNECTION=${SOURCE_DB_CONNECTION:-sqlite:////app/databases/example.db}
+      - SOURCE_DB_READ_ONLY=${SOURCE_DB_READ_ONLY:-0}
+      - LLM_CACHE_DB=${LLM_CACHE_DB:-/app/databases/cache.db}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_DB=0
+      - QUEUE_NAME=extraction_tasks
+    depends_on:
+      - redis
+    networks:
+      - backend
+    restart: unless-stopped
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./server
+          target: /app/server
+          ignore:
+            - node_modules/
+            - __pycache__/
+        - action: sync+restart
+          path: ./libretto
+          target: /app/libretto
+          ignore:
+            - __pycache__/
+        - action: sync+restart
+          path: .env
+          target: /app/.env
+        - action: rebuild
+          path: ./server/requirements.txt
+        - action: rebuild
+          path: ./server/frontend
+
+  libretto-worker:
+    build:
+      context: .
+      dockerfile: ./worker/Dockerfile
+    volumes:
+      - ./databases:/app/databases
+    env_file:
+      - .env
+    environment:
+      - INTERACTION_DB_CONNECTION=${INTERACTION_DB_CONNECTION:-sqlite:////app/databases/example_interactions.db}
+      - SOURCE_DB_CONNECTION=${SOURCE_DB_CONNECTION:-sqlite:////app/databases/example.db}
+      - SOURCE_DB_READ_ONLY=${SOURCE_DB_READ_ONLY:-0}
+      - LLM_CACHE_DB=${LLM_CACHE_DB:-/app/databases/cache.db}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_DB=0
+      - QUEUE_NAME=extraction_tasks
+    depends_on:
+      - redis
+    networks:
+      - backend
+    restart: unless-stopped
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./worker
+          target: /app/worker
+          ignore:
+            - __pycache__/
+        - action: sync+restart
+          path: ./libretto
+          target: /app/libretto
+          ignore:
+            - __pycache__/
+        - action: sync+restart
+          path: .env
+          target: /app/.env
+
+volumes:
+  redis_data:
+
+networks:
+  backend:
+    driver: bridge

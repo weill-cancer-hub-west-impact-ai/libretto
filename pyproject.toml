@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "libretto"
+version = "0.1.0"
+authors = [
+    {name = "Venkatesh Sivaraman", email = "venkatesh.sivaraman@ucsf.edu"},
+]
+description = "Interactive interface for LLM-based information extraction workflows on clinical notes"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10,<3.14"
+keywords = ["llm", "extraction", "clinical", "nlp", "machine-learning"]
+dependencies = [
+    "redis>=4.6.0",
+    "PyYAML",
+    "langextract>=1.1.1",
+    "bloatectomy @ git+https://github.com/jjfeng/bloatectomy.git",
+    "pandas>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "openpyxl>=3.1.0",
+    "rank-bm25>=0.2.2",
+    "openai>=1.0.0",
+    "ipykernel>=6.0.0",
+    "sqlalchemy>=2.0.0",
+    "lab-llm @ git+https://github.com/jjfenglab/llm-api",
+    "google-cloud-aiplatform>=1.60.0",
+    "google-cloud-storage>=2.0.0",
+    "google-cloud-bigquery-storage>=2.39.0",
+    "google-genai>=1.39.0",
+    "openai>=1.0.0",
+    "sqlalchemy-bigquery>=1.15.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest"
+]
+securellm = [
+    "securellm @ git+https://github.com/VISTA-Stanford/secure-llm.git",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/weill-cancer-hub-west-impact-ai/libretto"
+"Bug Reports" = "https://github.com/weill-cancer-hub-west-impact-ai/libretto/issues"
+"Source" = "https://github.com/weill-cancer-hub-west-impact-ai/libretto"
+
+[tool.setuptools.packages.find]
+include = ["libretto*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.txt", "*.md", "*.yml", "*.yaml"]

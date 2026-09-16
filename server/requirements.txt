@@ -1,0 +1,25 @@
+# Server-specific dependencies
+redis>=4.6.0
+pandas
+PyYAML
+python-dotenv
+fastapi>=0.104.1
+uvicorn[standard]>=0.24.0
+sqlalchemy>=2.0.0,<=2.0.44
+pydantic>=2.4.0
+langextract>=1.1.1
+lab_llm @ git+https://github.com/jjfenglab/llm-api
+bloatectomy @ git+https://github.com/jjfeng/bloatectomy.git
+jinja2==3.1.6
+litellm>=1.101.0
+python-multipart>=0.0.28
+duckdb-engine
+google-cloud-aiplatform>=1.60.0
+google-cloud-storage>=2.0.0
+google-cloud-bigquery-storage>=2.39.0
+google-genai>=1.39.0
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+python-dateutil
+openai>=1.0.0
+sqlalchemy-bigquery>=1.15.0

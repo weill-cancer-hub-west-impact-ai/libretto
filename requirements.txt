@@ -1,0 +1,27 @@
+# Combined dependencies for non-docker deployment/local installation
+redis>=4.6.0
+pandas
+PyYAML
+python-dotenv
+setuptools>=61.0
+fastapi>=0.104.1
+uvicorn[standard]>=0.24.0
+sqlalchemy>=2.0.0,<=2.0.44
+pydantic>=2.4.0
+lab_llm @ git+https://github.com/jjfenglab/llm-api
+jinja2==3.1.6
+litellm>=1.101.0
+python-multipart>=0.0.28
+google-cloud-aiplatform>=1.60.0
+google-cloud-storage>=2.0.0
+google-cloud-bigquery-storage>=2.39.0
+google-genai>=1.39.0
+duckdb-engine
+python-jose[cryptography]>=3.3.0
+bcrypt>=5.0.0
+python-dateutil
+langextract>=1.1.1
+bloatectomy @ git+https://github.com/jjfeng/bloatectomy.git
+gunicorn>=26.0.0
+openai>=1.0.0
+sqlalchemy-bigquery>=1.15.0

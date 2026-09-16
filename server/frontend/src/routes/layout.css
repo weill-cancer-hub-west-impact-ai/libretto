@@ -1,0 +1,159 @@
+@import 'tailwindcss';
+@source '../lib';
+
+body {
+  @apply text-stone-900;
+  font-family: 'Roboto Slab', sans-serif;
+}
+
+.markdown-container h1:first-child,
+.markdown-container h2:first-child,
+.markdown-container h3:first-child,
+.markdown-container h4:first-child,
+.markdown-container p:first-child {
+  @apply mt-0;
+}
+
+.markdown-container p {
+  @apply my-1 text-sm leading-[1.8];
+}
+
+.markdown-container h1 {
+  @apply my-2 text-lg font-bold;
+}
+
+.markdown-container h2 {
+  @apply my-2 text-base font-bold;
+}
+
+.markdown-container h3 {
+  @apply my-2 text-sm font-bold;
+}
+
+.markdown-container h4 {
+  @apply my-2 text-sm font-semibold;
+}
+
+.markdown-container ul {
+  @apply mx-4 my-4 list-outside list-disc;
+}
+
+.markdown-container ol {
+  @apply mx-4 my-4 list-outside list-decimal;
+}
+
+.markdown-container a {
+  @apply text-sky-500 hover:opacity-50;
+}
+
+select.flat-select,
+select.flat-select-sm,
+select.flat-select-dark {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+
+select.flat-select {
+  @apply rounded-md border border-gray-300 bg-gray-50 px-1.5 py-1 text-sm text-gray-900;
+}
+
+select.flat-select-sm {
+  @apply rounded p-1 text-xs;
+}
+
+select.flat-select:disabled,
+select.flat-select-sm:disabled {
+  @apply opacity-50;
+}
+
+select:focus {
+  @apply border-blue-500 ring-blue-500;
+}
+
+select.flat-select {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 10 6'%3E%3Cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 1 4 4 4-4'/%3E%3C/svg%3E");
+  background-position: right 0.75rem center;
+  background-repeat: no-repeat;
+  background-size: 0.75em 0.75em;
+  padding-right: 2.5rem;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.markdown-container pre {
+  white-space: pre-wrap; /* Since CSS 2.1 */
+  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+
+.btn {
+  @apply cursor-pointer rounded-md px-3 py-1.5 text-base font-semibold whitespace-nowrap disabled:cursor-not-allowed;
+}
+
+.btn-small {
+  @apply cursor-pointer rounded-md px-2 py-1.25 text-sm font-medium whitespace-nowrap disabled:cursor-not-allowed;
+}
+
+.btn-big {
+  @apply cursor-pointer rounded-lg px-4 py-2 text-base font-semibold whitespace-nowrap disabled:cursor-not-allowed;
+}
+
+.btn-tertiary {
+  @apply box-border border-2 border-stone-300/50 px-[calc(--spacing(3)-2px)] py-[calc(--spacing(1.5)-2px)] transition-colors hover:border-stone-500 disabled:opacity-50;
+}
+.btn-tertiary-dark {
+  @apply box-border border-2 border-stone-100/50 px-[calc(--spacing(3)-2px)] py-[calc(--spacing(1.5)-2px)] text-white transition-colors hover:border-stone-50 disabled:opacity-50;
+}
+
+.btn-secondary {
+  @apply bg-stone-100 transition-colors hover:bg-stone-300 disabled:opacity-50;
+}
+
+.btn-secondary-dark {
+  @apply bg-stone-700 text-white transition-colors hover:bg-stone-500 disabled:opacity-50;
+}
+
+.btn-primary {
+  @apply bg-sky-600 text-stone-50 transition-colors hover:bg-sky-700 disabled:opacity-50;
+}
+
+.btn-danger {
+  @apply bg-red-100 text-red-800 transition-colors hover:bg-red-300 disabled:opacity-50;
+}
+
+.btn-ai-primary {
+  @apply bg-purple-600 text-white transition-colors hover:bg-purple-700 disabled:opacity-50;
+}
+
+.btn-ai-secondary {
+  @apply bg-purple-200 text-purple-800 transition-colors hover:bg-purple-300 disabled:opacity-50;
+}
+
+.btn-icon {
+  @apply cursor-pointer rounded-md p-2 hover:bg-stone-200 disabled:cursor-not-allowed disabled:opacity-30;
+}
+
+.btn-icon-active {
+  @apply cursor-pointer rounded-md bg-stone-600 p-2 text-white hover:bg-stone-500 disabled:cursor-not-allowed disabled:opacity-30;
+}
+
+.btn-icon-small {
+  @apply cursor-pointer rounded-md p-1 hover:bg-stone-200 disabled:cursor-not-allowed disabled:opacity-30;
+}
+
+.btn-icon-dark {
+  @apply cursor-pointer rounded-md p-2 text-white hover:bg-stone-600/50 disabled:cursor-not-allowed disabled:opacity-30;
+}
+
+.btn-icon-blue {
+  @apply hover:bg-sky-600/50;
+}
+
+.btn-fade {
+  @apply hover:bg-transparent hover:opacity-50;
+}
